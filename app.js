@@ -4,13 +4,14 @@ const produits = [
   { nom: "Écran", quantite: 3 }
 ];
 
-const liste = document.querySelector("#liste-produit");
+const liste = document.querySelector("#liste-produits");
 const formulaire = document.querySelector("#formulaire");
 const champNom = document.querySelector("#nom");
 const champQuantite = document.querySelector("#quantite");
 const champRecherche = document.querySelector("#recherche");
 const message = document.querySelector("#message");
 const total = document.querySelector("#total");
+
 
 function afficherProduits() {
   liste.innerHTML = "";
@@ -22,20 +23,30 @@ function afficherProduits() {
   resultats.forEach(function (produit) {
     const element = document.createElement("li");
     element.textContent = produit.nom + " — Quantité : " + produit.quantite;
+    console.log(element);
+    
     liste.appendChild(element);
+    
   });
 
   if (resultats.length === 0) {
     const element = document.createElement("li");
     element.textContent = "Aucun matériel trouvé";
+    
     liste.appendChild(element);
   }
 
-  let quantiteTotale = 0;
+  let quantiteTotale =Number (0);
   produits.forEach(function (produit) {
-    quantiteTotale = quantiteTotale + produit.quantite;
+    quantiteTotale =Number(quantiteTotale + (+produit.quantite));
+    console.log(quantiteTotale);
+    
+  
+    
   });
   total.textContent = quantiteTotale;
+  
+  
 }
 
 formulaire.addEventListener("submit", function (event) {
@@ -43,7 +54,10 @@ formulaire.addEventListener("submit", function (event) {
   const nom = champNom.value.trim();
   const quantite = champQuantite.value;
 
-  if (nom === "" && champQuantite.value === "") {
+  console.log(nom);
+  
+
+  if ((nom === "") || (champQuantite.value === "")) {
     message.textContent = "Renseignez le nom et la quantité.";
     return;
   }
@@ -57,7 +71,9 @@ formulaire.addEventListener("submit", function (event) {
   message.textContent = "Matériel ajouté.";
   formulaire.reset();
   champRecherche.value = "";
+  afficherProduits()
+  
 });
 
-champRecherche.addEventListener("change", afficherProduits);
+champRecherche.addEventListener("input", afficherProduits)
 afficherProduits();
