@@ -1,5 +1,5 @@
 # Journal de débogage
-Nom : ....................................
+Nom : Meqdar elhabib
 
 | N° | Action pour reproduire | Résultat attendu / obtenu | Hypothèse et cause identifiée | Correction | Test après correction |
 | --- | --- | --- | --- | --- | --- |
